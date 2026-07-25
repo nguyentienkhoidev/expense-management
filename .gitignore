@@ -1,0 +1,6 @@
+# Root gitignore
+.DS_Store
+.env
+.idea/
+.vscode/
+*.log
