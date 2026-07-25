@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/expense_db_prod}
+    username: ${DB_USERNAME:expense_user}
+    password: ${DB_PASSWORD:expense_password}
+  jpa:
+    hibernate:
+      ddl-auto: validate # IMPORTANT: Do not update schema automatically on prod
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: false
+    show-sql: false # Disable query logging on prod to save logs space
+app:
+  jwt:
+    secret: ${JWT_SECRET:changethis_in_production_changethis_in_production}
+    expirationMs: 86400000

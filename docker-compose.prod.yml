@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: expense_management_db
+    environment:
+      POSTGRES_USER: ${DB_USERNAME:-expense_user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-expense_password}
+      POSTGRES_DB: ${DB_NAME:-expense_db_prod}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata_prod:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - expense_net
+
+  backend:
+    image: ghcr.io/nguyentienkhoidev/expense-management-backend:latest
+    container_name: expense_management_backend
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - DB_URL=jdbc:postgresql://db:5432/${DB_NAME:-expense_db_prod}
+      - DB_USERNAME=${DB_USERNAME:-expense_user}
+      - DB_PASSWORD=${DB_PASSWORD:-expense_password}
+      - JWT_SECRET=${JWT_SECRET:-changethis_in_production_changethis_in_production}
+    ports:
+      - "8088:8088"
+    depends_on:
+      - db
+    restart: unless-stopped
+    networks:
+      - expense_net
+
+  frontend:
+    image: ghcr.io/nguyentienkhoidev/expense-management-frontend:latest
+    container_name: expense_management_frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - expense_net
+
+volumes:
+  pgdata_prod:
+
+networks:
+  expense_net:
