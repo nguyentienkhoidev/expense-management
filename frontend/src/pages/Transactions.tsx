@@ -137,7 +137,7 @@ export default function Transactions() {
                   />
               </div>
               <div className="flex gap-4">
-                  <Select value={typeFilter} onValueChange={setTypeFilter}>
+                  <Select value={typeFilter} onValueChange={(val) => setTypeFilter(val || 'ALL')}>
                       <SelectTrigger className="w-[140px] rounded-lg bg-background/50 h-10">
                           <SelectValue placeholder="Type" />
                       </SelectTrigger>
@@ -202,10 +202,8 @@ export default function Transactions() {
                                     </td>
                                     <td className="px-6 py-4 text-right">
                                         <DropdownMenu>
-                                            <DropdownMenuTrigger asChild>
-                                                <Button variant="ghost" className="h-8 w-8 p-0 rounded-lg">
-                                                    <MoreHorizontal className="h-4 w-4" />
-                                                </Button>
+                                            <DropdownMenuTrigger className="inline-flex items-center justify-center h-8 w-8 p-0 rounded-lg hover:bg-accent hover:text-accent-foreground outline-none">
+                                                <MoreHorizontal className="h-4 w-4" />
                                             </DropdownMenuTrigger>
                                             <DropdownMenuContent align="end" className="rounded-lg">
                                                 <DropdownMenuItem onClick={() => setTransactionToDelete(tx.id)} className="text-destructive focus:text-destructive focus:bg-destructive/10 cursor-pointer">

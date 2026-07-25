@@ -67,9 +67,9 @@ const ForgotPassword = () => {
                                         <span className="font-medium text-foreground">{email}</span>
                                     </p>
                                 </div>
-                                <Button asChild className="w-full h-12 rounded-xl mt-4">
-                                    <Link to="/login">{t('auth.returnToLogin')}</Link>
-                                </Button>
+                                <Link to="/login" className="flex items-center justify-center w-full h-12 rounded-xl mt-4 bg-primary text-primary-foreground hover:bg-primary/90 text-sm font-medium transition-colors">
+                                    {t('auth.backToLogin')}
+                                </Link>
                             </div>
                         ) : (
                             <form onSubmit={handleSubmit} className="space-y-5">

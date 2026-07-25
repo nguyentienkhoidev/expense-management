@@ -174,10 +174,8 @@ export default function Wallets() {
                             </div>
                         </div>
                         <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                                <Button variant="ghost" className="h-8 w-8 p-0 rounded-lg relative z-10">
-                                    <MoreHorizontal className="h-4 w-4" />
-                                </Button>
+                            <DropdownMenuTrigger className="inline-flex items-center justify-center h-8 w-8 p-0 rounded-lg hover:bg-accent hover:text-accent-foreground outline-none">
+                                <MoreHorizontal className="h-4 w-4" />
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end" className="rounded-lg">
                                 <DropdownMenuItem onClick={() => handleToggleStatus(wallet.id)} disabled={isToggling === wallet.id} className="cursor-pointer">

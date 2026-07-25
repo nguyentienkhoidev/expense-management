@@ -225,7 +225,7 @@ export default function Dashboard() {
                           </Pie>
                           <Tooltip 
                             contentStyle={{ backgroundColor: 'hsl(var(--card))', borderRadius: '12px', border: '1px solid hsl(var(--border))' }}
-                            formatter={(value: number) => formatCurrency(value)}
+                            formatter={(value: any) => formatCurrency(value)}
                           />
                         </PieChart>
                       </ResponsiveContainer>
