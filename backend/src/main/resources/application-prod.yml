@@ -5,7 +5,7 @@ spring:
     password: ${DB_PASSWORD:expense_password}
   jpa:
     hibernate:
-      ddl-auto: validate # IMPORTANT: Do not update schema automatically on prod
+      ddl-auto: update # Temporarily set to update to create tables
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
